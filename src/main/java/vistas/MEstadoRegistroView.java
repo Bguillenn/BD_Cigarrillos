@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Brayan Guillen N
  */
-public class MNacionesView extends javax.swing.JFrame {
+public class MEstadoRegistroView extends javax.swing.JFrame {
     
     private int estado = 0;
     /*
@@ -34,20 +34,17 @@ public class MNacionesView extends javax.swing.JFrame {
     5 = Reactivando
     */
     private EstadoRegistrosController estRegController;
-    private NacionesController nacionesController;
     private Connector db;
     /**
      * Creates new form MNacionesView
      */
-    public MNacionesView() {
+    public MEstadoRegistroView() {
         db = new Connector();
         estRegController = new EstadoRegistrosController(db.getConnection());
-        nacionesController = new NacionesController(db.getConnection());
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.txtCodigo.setEnabled(false);
-        this.txtNombre.setEnabled(false);
-        this.txtEstReg.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.setLocationRelativeTo(null);
         cargarTabla();
     }
@@ -67,10 +64,8 @@ public class MNacionesView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtEstReg = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
@@ -83,8 +78,6 @@ public class MNacionesView extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        btnInactivar = new javax.swing.JButton();
-        btnReactivar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -93,14 +86,14 @@ public class MNacionesView extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 204, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("NACIONES");
+        jLabel1.setText("ESTADO REGISTRO");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Gestiona los registros de las naciones en el sistema");
+        jLabel2.setText("Gestiona los estados de registro del sistema");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,29 +117,25 @@ public class MNacionesView extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la nación"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del estado de registro"));
 
         jLabel3.setText("Codigo:");
 
-        jLabel4.setText("Nombre:");
-
-        jLabel5.setText("Estado del registro:");
+        jLabel4.setText("Descripcion:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstReg, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -159,12 +148,8 @@ public class MNacionesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtEstReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap())
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,14 +160,14 @@ public class MNacionesView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Estado Registro"
+                "Codigo", "Descripcion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -283,20 +268,6 @@ public class MNacionesView extends javax.swing.JFrame {
             }
         });
 
-        btnInactivar.setText("Inactivar");
-        btnInactivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInactivarActionPerformed(evt);
-            }
-        });
-
-        btnReactivar.setText("Reactivar");
-        btnReactivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReactivarActionPerformed(evt);
-            }
-        });
-
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,16 +281,12 @@ public class MNacionesView extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInactivar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnAdicionar)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnReactivar, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(btnActualizar)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -338,10 +305,7 @@ public class MNacionesView extends javax.swing.JFrame {
                     .addComponent(btnEliminar)
                     .addComponent(btnCancelar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInactivar)
-                    .addComponent(btnReactivar)
-                    .addComponent(btnSalir))
+                .addComponent(btnSalir)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -383,12 +347,9 @@ public class MNacionesView extends javax.swing.JFrame {
 
         this.cambiarEstado(1);
         this.txtCodigo.setText("");
-        this.txtNombre.setText("");
-        EstadoRegistro estReg = estRegController.search(1); //Buscamos el estado de registro con codigo 1
-        this.txtEstReg.setText(estReg.getDescripcion());
+        this.txtDescripcion.setText("");
         this.txtCodigo.setEnabled(true);
-        this.txtNombre.setEnabled(true);
-        this.txtEstReg.setEnabled(false);
+        this.txtDescripcion.setEnabled(true);
         this.txtCodigo.requestFocus();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -401,54 +362,13 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(2);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search( (int) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg= estRegController.search(nacion.getEstadoRegistro());
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
-        this.txtEstReg.setText(estReg.getDescripcion());
+        EstadoRegistro estReg = estRegController.search( (int) modeloTabla.getValueAt(indexRow, 0));
+        this.txtCodigo.setText(estReg.getCodigo()+"");
+        this.txtDescripcion.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
-        this.txtEstReg.setEnabled(false);
-        this.txtNombre.setEnabled(true);
-        this.txtNombre.requestFocus();
+        this.txtDescripcion.setEnabled(true);
+        this.txtDescripcion.requestFocus();
     }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnInactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInactivarActionPerformed
-        int indexRow = this.tblData.getSelectedRow();
-        if(indexRow == -1){
-            JOptionPane.showMessageDialog(this, "Tiene que selecionar un registro de la tabla", "Elegir uno", JOptionPane.ERROR_MESSAGE);
-            this.btnCancelar.doClick();
-            return;
-        }
-        this.cambiarEstado(4);
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search( (int) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg = estRegController.search(3);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
-        this.txtEstReg.setText(estReg.getDescripcion());
-        this.txtCodigo.setEnabled(false);
-        this.txtNombre.setEnabled(false);
-        this.txtEstReg.setEditable(false);
-    }//GEN-LAST:event_btnInactivarActionPerformed
-
-    private void btnReactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReactivarActionPerformed
-        int indexRow = this.tblData.getSelectedRow();
-        if(indexRow == -1){
-            JOptionPane.showMessageDialog(this, "Tiene que selecionar un registro de la tabla", "Elegir uno", JOptionPane.ERROR_MESSAGE);
-            this.btnCancelar.doClick();
-            return;
-        }
-        this.cambiarEstado(5);
-        DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search((int) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg = estRegController.search(1);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
-        this.txtEstReg.setText(estReg.getDescripcion());
-        this.txtCodigo.setEnabled(false);
-        this.txtNombre.setEnabled(false);
-        this.txtEstReg.setEditable(false);
-    }//GEN-LAST:event_btnReactivarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
@@ -469,24 +389,19 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(3);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search((int) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg = estRegController.search(2);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
-        this.txtEstReg.setText(estReg.getDescripcion());
+        EstadoRegistro estReg = estRegController.search((int) modeloTabla.getValueAt(indexRow, 0));
+        this.txtCodigo.setText(estReg.getCodigo()+"");
+        this.txtDescripcion.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
-        this.txtNombre.setEnabled(false);
-        this.txtEstReg.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.cambiarEstado(0);
         this.txtCodigo.setText("");
-        this.txtNombre.setText("");
-        this.txtEstReg.setText("");
+        this.txtDescripcion.setText("");
         this.txtCodigo.setEnabled(false);
-        this.txtNombre.setEnabled(false);
-        this.txtEstReg.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -502,12 +417,6 @@ public class MNacionesView extends javax.swing.JFrame {
                 break;
             case 3:
                 eliminarRegistro();
-                break;
-            case 4:
-                inactivarRegistro();
-                break;
-            case 5:
-                reactivarRegistro();
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "Error accion no reconocida", "Error en la accion", JOptionPane.ERROR_MESSAGE);
@@ -530,19 +439,15 @@ public class MNacionesView extends javax.swing.JFrame {
 
     private void cargarTabla(){
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        ArrayList<Nacion> data = nacionesController.getAll();
-        modeloTabla.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Estado del registro"});
+        ArrayList<EstadoRegistro> data = estRegController.getAll();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Codigo", "Descripcion"});
         EstadoRegistro estReg;
         try{
              for(int i=0; i < data.size(); i++){
-                 estReg = estRegController.search(data.get(i).getEstadoRegistro());
-                 if(estReg.getCodigo() != 2){
                      modeloTabla.addRow(new Object[]{
                         data.get(i).getCodigo(),
-                        data.get(i).getNombre(),
-                        estReg.getDescripcion()
+                        data.get(i).getDescripcion(),
                      });
-                 }
              }
              this.tblData.setModel(modeloTabla);
         }catch(Exception e){
@@ -553,7 +458,7 @@ public class MNacionesView extends javax.swing.JFrame {
     
     private void adicionarNuevo(){
         String ventanaTitle = "Informacion de adiccionar";
-        if(txtCodigo.getText().isBlank() || txtNombre.getText().isBlank()){
+        if(txtCodigo.getText().isBlank() || txtDescripcion.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos", ventanaTitle, JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -564,12 +469,11 @@ public class MNacionesView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El campo codigo debe ser un numero entero", ventanaTitle,JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Nacion nacion = new Nacion(
+        EstadoRegistro estReg = new EstadoRegistro(
                 codigo,
-                this.txtNombre.getText(),
-                1
+                this.txtDescripcion.getText()
         );
-        ControllerResponse resp = nacionesController.adiccionar(nacion);
+        ControllerResponse resp = estRegController.adiccionar(estReg);
         if(resp.isOk()){
             JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
             cargarTabla();
@@ -581,16 +485,16 @@ public class MNacionesView extends javax.swing.JFrame {
     
     private void modificarRegistro(){
         String ventanaTitle = "Información de la modificacion";
-        if(this.txtNombre.getText().isBlank()){
+        if(this.txtDescripcion.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "El valor del nombre no puede ser vacio", ventanaTitle, JOptionPane.ERROR_MESSAGE);
             return;
         }
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente deseas realizar los cambios?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            Nacion nacion = nacionesController.search(Integer.parseInt(this.txtCodigo.getText()));
-            if(nacion != null){
-                nacion.setNombre(this.txtNombre.getText());
-                ControllerResponse resp = nacionesController.modificar(nacion);
+            EstadoRegistro estReg = estRegController.search(Integer.parseInt(this.txtCodigo.getText()));
+            if(estReg != null){
+                estReg.setDescripcion(this.txtDescripcion.getText());
+                ControllerResponse resp = estRegController.modificar(estReg);
                 if(resp.isOk()){
                     JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                     cargarTabla();
@@ -610,7 +514,7 @@ public class MNacionesView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la eliminación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea eliminar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.eliminar(Integer.parseInt(this.txtCodigo.getText()));
+            ControllerResponse resp = estRegController.eliminar(Integer.parseInt(this.txtCodigo.getText()));
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -623,39 +527,6 @@ public class MNacionesView extends javax.swing.JFrame {
         btnCancelar.doClick();
     }
     
-    private void inactivarRegistro(){
-        String ventanaTitle = "Información de la inactivación";
-        int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea inactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
-        if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.inactivar(Integer.parseInt(this.txtCodigo.getText()));
-            if(resp.isOk()){
-                JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
-                cargarTabla();
-            }else{
-                JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Operacion cancelada con exito", ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
-        }
-        btnCancelar.doClick();
-    }
-    
-    private void reactivarRegistro(){
-        String ventanaTitle = "Información de la reactivación";
-        int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea reactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
-        if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.reactivar(Integer.parseInt(this.txtCodigo.getText()));
-            if(resp.isOk()){
-                JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
-                cargarTabla();
-            }else{
-                JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Operacion cancelada con exito", ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
-        }
-        btnCancelar.doClick();
-    }
     
     /**
      * @param args the command line arguments
@@ -674,20 +545,21 @@ public class MNacionesView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MEstadoRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MEstadoRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MEstadoRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MEstadoRegistroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MNacionesView().setVisible(true);
+                new MEstadoRegistroView().setVisible(true);
             }
         });
     }
@@ -697,15 +569,12 @@ public class MNacionesView extends javax.swing.JFrame {
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnInactivar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnReactivar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -716,7 +585,6 @@ public class MNacionesView extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtEstReg;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtDescripcion;
     // End of variables declaration//GEN-END:variables
 }

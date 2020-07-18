@@ -12,12 +12,20 @@ package modelos;
 public class EstadoRegistro {
     public static final String TABLE_NAME = "gzz_estado_registro";
     //Atributos
-    private final int codigo;
-    private final String descripcion;
+    private int codigo = -1;
+    private String descripcion;
     
     public EstadoRegistro(int codigo, String descripcion){
         this.codigo = codigo;
         this.descripcion = descripcion;
+    }
+    
+    public void setCodigo(int cod){
+        this.codigo = codigo;
+    }
+    
+    public void setDescripcion(String des){
+        this.descripcion = des;
     }
     
     public int getCodigo(){

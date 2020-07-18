@@ -9,10 +9,10 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.EstadoRegistro;
-import modelos.Nacion;
+import modelos.Departamento;
 import modelos.ControllerResponse;
 import controladores.EstadoRegistrosController;
-import controladores.NacionesController;
+import controladores.DepartamentosController;
 import config.Connector;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Brayan Guillen N
  */
-public class MNacionesView extends javax.swing.JFrame {
+public class MDepartamentosView extends javax.swing.JFrame {
     
     private int estado = 0;
     /*
@@ -34,15 +34,15 @@ public class MNacionesView extends javax.swing.JFrame {
     5 = Reactivando
     */
     private EstadoRegistrosController estRegController;
-    private NacionesController nacionesController;
+    private DepartamentosController departamentosController;
     private Connector db;
     /**
      * Creates new form MNacionesView
      */
-    public MNacionesView() {
+    public MDepartamentosView() {
         db = new Connector();
         estRegController = new EstadoRegistrosController(db.getConnection());
-        nacionesController = new NacionesController(db.getConnection());
+        departamentosController = new DepartamentosController(db.getConnection());
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.txtCodigo.setEnabled(false);
@@ -93,14 +93,14 @@ public class MNacionesView extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 204, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("NACIONES");
+        jLabel1.setText("DEPARTAMENTOS");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Gestiona los registros de las naciones en el sistema");
+        jLabel2.setText("Gestiona los registros de los departamentos en el sistema ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +124,7 @@ public class MNacionesView extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la nación"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del departamento"));
 
         jLabel3.setText("Codigo:");
 
@@ -401,10 +401,10 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(2);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search( (int) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg= estRegController.search(nacion.getEstadoRegistro());
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
+        Departamento depa = departamentosController.search( (String) modeloTabla.getValueAt(indexRow, 0));
+        EstadoRegistro estReg= estRegController.search(depa.getEstadoRegistro());
+        this.txtCodigo.setText(depa.getCodigo()+"");
+        this.txtNombre.setText(depa.getNombre());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtEstReg.setEnabled(false);
@@ -421,10 +421,10 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(4);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search( (int) modeloTabla.getValueAt(indexRow, 0));
+        Departamento depa = departamentosController.search( (String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(3);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
+        this.txtCodigo.setText(depa.getCodigo()+"");
+        this.txtNombre.setText(depa.getNombre());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
@@ -440,10 +440,10 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(5);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search((int) modeloTabla.getValueAt(indexRow, 0));
+        Departamento depa = departamentosController.search((String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(1);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
+        this.txtCodigo.setText(depa.getCodigo()+"");
+        this.txtNombre.setText(depa.getNombre());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
@@ -469,10 +469,10 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         this.cambiarEstado(3);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        Nacion nacion = nacionesController.search((int) modeloTabla.getValueAt(indexRow, 0));
+        Departamento depa = departamentosController.search((String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(2);
-        this.txtCodigo.setText(nacion.getCodigo()+"");
-        this.txtNombre.setText(nacion.getNombre());
+        this.txtCodigo.setText(depa.getCodigo()+"");
+        this.txtNombre.setText(depa.getNombre());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
@@ -530,7 +530,7 @@ public class MNacionesView extends javax.swing.JFrame {
 
     private void cargarTabla(){
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        ArrayList<Nacion> data = nacionesController.getAll();
+        ArrayList<Departamento> data = departamentosController.getAll();
         modeloTabla.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Estado del registro"});
         EstadoRegistro estReg;
         try{
@@ -564,12 +564,12 @@ public class MNacionesView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El campo codigo debe ser un numero entero", ventanaTitle,JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Nacion nacion = new Nacion(
-                codigo,
+        Departamento nacion = new Departamento(
+                codigo+"",
                 this.txtNombre.getText(),
                 1
         );
-        ControllerResponse resp = nacionesController.adiccionar(nacion);
+        ControllerResponse resp = departamentosController.adiccionar(nacion);
         if(resp.isOk()){
             JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
             cargarTabla();
@@ -587,10 +587,10 @@ public class MNacionesView extends javax.swing.JFrame {
         }
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente deseas realizar los cambios?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            Nacion nacion = nacionesController.search(Integer.parseInt(this.txtCodigo.getText()));
-            if(nacion != null){
-                nacion.setNombre(this.txtNombre.getText());
-                ControllerResponse resp = nacionesController.modificar(nacion);
+            Departamento depa = departamentosController.search(this.txtCodigo.getText());
+            if(depa != null){
+                depa.setNombre(this.txtNombre.getText());
+                ControllerResponse resp = departamentosController.modificar(depa);
                 if(resp.isOk()){
                     JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                     cargarTabla();
@@ -610,7 +610,7 @@ public class MNacionesView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la eliminación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea eliminar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.eliminar(Integer.parseInt(this.txtCodigo.getText()));
+            ControllerResponse resp = departamentosController.eliminar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -627,7 +627,7 @@ public class MNacionesView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la inactivación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea inactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.inactivar(Integer.parseInt(this.txtCodigo.getText()));
+            ControllerResponse resp = departamentosController.inactivar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -644,7 +644,7 @@ public class MNacionesView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la reactivación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea reactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = nacionesController.reactivar(Integer.parseInt(this.txtCodigo.getText()));
+            ControllerResponse resp = departamentosController.reactivar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -674,20 +674,21 @@ public class MNacionesView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MDepartamentosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MDepartamentosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MDepartamentosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MDepartamentosView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MNacionesView().setVisible(true);
+                new MDepartamentosView().setVisible(true);
             }
         });
     }

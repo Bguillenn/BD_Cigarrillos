@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Brayan Guillen N
  */
-public class MNacionesView extends javax.swing.JFrame {
+public class MColoresView extends javax.swing.JFrame {
     
     private int estado = 0;
     /*
@@ -39,7 +39,7 @@ public class MNacionesView extends javax.swing.JFrame {
     /**
      * Creates new form MNacionesView
      */
-    public MNacionesView() {
+    public MColoresView() {
         db = new Connector();
         estRegController = new EstadoRegistrosController(db.getConnection());
         nacionesController = new NacionesController(db.getConnection());
@@ -93,14 +93,14 @@ public class MNacionesView extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 204, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("NACIONES");
+        jLabel1.setText("DEPARTAMENTOS");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Gestiona los registros de las naciones en el sistema");
+        jLabel2.setText("Gestiona los registros de los departamentos en el sistema ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,7 +124,7 @@ public class MNacionesView extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la nación"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del departamento"));
 
         jLabel3.setText("Codigo:");
 
@@ -674,20 +674,23 @@ public class MNacionesView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MNacionesView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MNacionesView().setVisible(true);
+                new MColoresView().setVisible(true);
             }
         });
     }
