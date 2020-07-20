@@ -9,10 +9,10 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.EstadoRegistro;
-import modelos.ColorM;
+import modelos.ClaseCigarro;
 import modelos.ControllerResponse;
 import controladores.EstadoRegistrosController;
-import controladores.ColoresController;
+import controladores.ClaseCigarrosController;
 import config.Connector;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author Brayan Guillen N
  */
-public class MColoresView extends javax.swing.JFrame {
+public class MClaseCigarroView extends javax.swing.JFrame {
     
     private int estado = 0;
     /*
@@ -34,22 +34,20 @@ public class MColoresView extends javax.swing.JFrame {
     5 = Reactivando
     */
     private EstadoRegistrosController estRegController;
-    private ColoresController coloresController;
+    private ClaseCigarrosController claCigController;
     private Connector db;
     /**
      * Creates new form MNacionesView
      */
-    public MColoresView() {
+    public MClaseCigarroView() {
         db = new Connector();
         estRegController = new EstadoRegistrosController(db.getConnection());
-        coloresController = new ColoresController(db.getConnection());
+        claCigController = new ClaseCigarrosController(db.getConnection());
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
-        this.txtRojo.setEnabled(false);
-        this.txtVerde.setEnabled(false);
-        this.txtAzul.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.txtEstReg.setEnabled(false);
         this.setLocationRelativeTo(null);
         cargarTabla();
@@ -74,12 +72,8 @@ public class MColoresView extends javax.swing.JFrame {
         txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtEstReg = new javax.swing.JTextField();
-        txtVerde = new javax.swing.JTextField();
-        txtRojo = new javax.swing.JTextField();
-        txtAzul = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
@@ -102,14 +96,14 @@ public class MColoresView extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 90, 34));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("COLORES");
+        jLabel1.setText("CLASES DE CIGARROS");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Gestiona los registros de colores en el sistema ");
+        jLabel2.setText("Gestiona los registros de las clases de cigarros en el sistema");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,45 +135,30 @@ public class MColoresView extends javax.swing.JFrame {
 
         jLabel5.setText("Estado del registro:");
 
-        jLabel7.setText("Rojo:");
-
-        jLabel8.setText("Verde:");
-
-        jLabel9.setText("Azul:");
+        jLabel8.setText("Descripción:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEstReg, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRojo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtVerde, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(txtAzul, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEstReg, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,20 +167,14 @@ public class MColoresView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtVerde, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRojo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAzul, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtEstReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,14 +190,14 @@ public class MColoresView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Rojo", "Verde", "Azul", "Estado Registro"
+                "Codigo", "Nombre", "Descripcion", "Estado Registro"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -251,7 +224,7 @@ public class MColoresView extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -269,22 +242,22 @@ public class MColoresView extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap()
+                .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEstado)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -408,14 +381,14 @@ public class MColoresView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -426,16 +399,12 @@ public class MColoresView extends javax.swing.JFrame {
         this.cambiarEstado(1);
         this.txtCodigo.setText("");
         this.txtNombre.setText("");
-        this.txtRojo.setText("");
-        this.txtVerde.setText("");
-        this.txtAzul.setText("");
+        this.txtDescripcion.setText("");
         EstadoRegistro estReg = estRegController.search(1); //Buscamos el estado de registro con codigo 1
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(true);
         this.txtNombre.setEnabled(true);
-        this.txtRojo.setEnabled(true);
-        this.txtVerde.setEnabled(true);
-        this.txtAzul.setEnabled(true);
+        this.txtDescripcion.setEnabled(true);
         this.txtEstReg.setEnabled(false);
         this.txtCodigo.requestFocus();
     }//GEN-LAST:event_btnAdicionarActionPerformed
@@ -449,20 +418,16 @@ public class MColoresView extends javax.swing.JFrame {
         }
         this.cambiarEstado(2);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        ColorM color = coloresController.search( (String) modeloTabla.getValueAt(indexRow, 0));
-        EstadoRegistro estReg= estRegController.search(color.getEstadoRegistro());
-        this.txtCodigo.setText(color.getCodigo()+"");
-        this.txtNombre.setText(color.getNombre());
-        this.txtRojo.setText(color.getRojo()+"");
-        this.txtVerde.setText(color.getVerde()+"");
-        this.txtAzul.setText(color.getAzul()+"");
+        ClaseCigarro claCig = claCigController.search( (String) modeloTabla.getValueAt(indexRow, 0));
+        EstadoRegistro estReg= estRegController.search(claCig.getEstadoRegistro());
+        this.txtCodigo.setText(claCig.getCodigo()+"");
+        this.txtNombre.setText(claCig.getNombre());
+        this.txtDescripcion.setText(claCig.getDescripcion());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtEstReg.setEnabled(false);
         this.txtNombre.setEnabled(true);
-        this.txtRojo.setEnabled(true);
-        this.txtVerde.setEnabled(true);
-        this.txtAzul.setEnabled(true);
+        this.txtDescripcion.setEnabled(true);
         this.txtNombre.requestFocus();
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -475,19 +440,15 @@ public class MColoresView extends javax.swing.JFrame {
         }
         this.cambiarEstado(4);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        ColorM color = coloresController.search( (String) modeloTabla.getValueAt(indexRow, 0));
+        ClaseCigarro claCig = claCigController.search( (String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(3);
-        this.txtCodigo.setText(color.getCodigo()+"");
-        this.txtNombre.setText(color.getNombre());
-        this.txtRojo.setText(color.getRojo()+"");
-        this.txtVerde.setText(color.getVerde()+"");
-        this.txtAzul.setText(color.getAzul()+"");
+        this.txtCodigo.setText(claCig.getCodigo()+"");
+        this.txtNombre.setText(claCig.getNombre());
+        this.txtDescripcion.setText(claCig.getDescripcion());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
-        this.txtRojo.setEnabled(false);
-        this.txtVerde.setEnabled(false);
-        this.txtAzul.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.txtEstReg.setEditable(false);
     }//GEN-LAST:event_btnInactivarActionPerformed
 
@@ -500,19 +461,15 @@ public class MColoresView extends javax.swing.JFrame {
         }
         this.cambiarEstado(5);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        ColorM color = coloresController.search((String) modeloTabla.getValueAt(indexRow, 0));
+        ClaseCigarro claCig = claCigController.search((String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(1);
-        this.txtCodigo.setText(color.getCodigo()+"");
-        this.txtNombre.setText(color.getNombre());
-        this.txtRojo.setText(color.getRojo()+"");
-        this.txtVerde.setText(color.getVerde()+"");
-        this.txtAzul.setText(color.getAzul()+"");
+        this.txtCodigo.setText(claCig.getCodigo()+"");
+        this.txtNombre.setText(claCig.getNombre());
+        this.txtDescripcion.setText(claCig.getDescripcion());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
-        this.txtRojo.setEnabled(false);
-        this.txtVerde.setEnabled(false);
-        this.txtAzul.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.txtEstReg.setEditable(false);
     }//GEN-LAST:event_btnReactivarActionPerformed
 
@@ -535,19 +492,15 @@ public class MColoresView extends javax.swing.JFrame {
         }
         this.cambiarEstado(3);
         DefaultTableModel modeloTabla = (DefaultTableModel) this.tblData.getModel();
-        ColorM color = coloresController.search((String) modeloTabla.getValueAt(indexRow, 0));
+        ClaseCigarro claCig = claCigController.search((String) modeloTabla.getValueAt(indexRow, 0));
         EstadoRegistro estReg = estRegController.search(2);
-        this.txtCodigo.setText(color.getCodigo()+"");
-        this.txtNombre.setText(color.getNombre());
-        this.txtRojo.setText(color.getRojo()+"");
-        this.txtVerde.setText(color.getVerde()+"");
-        this.txtAzul.setText(color.getAzul()+"");
+        this.txtCodigo.setText(claCig.getCodigo()+"");
+        this.txtNombre.setText(claCig.getNombre());
+        this.txtDescripcion.setText(ClaCig.getDescripcion());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
-        this.txtRojo.setEnabled(false);
-        this.txtVerde.setEnabled(false);
-        this.txtAzul.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.txtEstReg.setEnabled(false);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -555,15 +508,11 @@ public class MColoresView extends javax.swing.JFrame {
         this.cambiarEstado(0);
         this.txtCodigo.setText("");
         this.txtNombre.setText("");
+        this.txtDescripcion.setText("");
         this.txtEstReg.setText("");
-        this.txtRojo.setText("");
-        this.txtVerde.setText("");
-        this.txtAzul.setText("");
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
-        this.txtRojo.setEnabled(false);
-        this.txtVerde.setEnabled(false);
-        this.txtAzul.setEnabled(false);
+        this.txtDescripcion.setEnabled(false);
         this.txtEstReg.setEnabled(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -608,8 +557,8 @@ public class MColoresView extends javax.swing.JFrame {
 
     private void cargarTabla(){
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        ArrayList<ColorM> data = coloresController.getAll();
-        modeloTabla.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Rojo", "Verde", "Azul", "Estado del registro"});
+        ArrayList<ClaseCigarro> data = claCigController.getAll();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Descripcion", "Estado del registro"});
         EstadoRegistro estReg;
         try{
              for(int i=0; i < data.size(); i++){
@@ -618,9 +567,7 @@ public class MColoresView extends javax.swing.JFrame {
                      modeloTabla.addRow(new Object[]{
                         data.get(i).getCodigo(),
                         data.get(i).getNombre(),
-                        data.get(i).getRojo(),
-                        data.get(i).getVerde(),
-                        data.get(i).getAzul(),
+                        data.get(i).getDescripcion(),
                         estReg.getDescripcion()
                      });
                  }
@@ -634,34 +581,24 @@ public class MColoresView extends javax.swing.JFrame {
     
     private void adicionarNuevo(){
         String ventanaTitle = "Informacion de adiccionar";
-        if(txtCodigo.getText().isBlank() || txtNombre.getText().isBlank()
-                || txtRojo.getText().isBlank() || txtVerde.getText().isBlank() || txtAzul.getText().isBlank()){
+        if(txtCodigo.getText().isBlank() || txtNombre.getText().isBlank() || txtDescripcion.getText().isBlank()){
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos", ventanaTitle, JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int codigo,rojo,verde,azul;
+        int codigo;
         try{
             codigo = Integer.parseInt(this.txtCodigo.getText());
-            rojo = Integer.parseInt(this.txtRojo.getText());
-            verde = Integer.parseInt(this.txtVerde.getText());
-            azul = Integer.parseInt(this.txtAzul.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Los campos codigo, rojo, verde y azul deben ser un numero entero", ventanaTitle,JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El campo codigo debe ser un numero entero", ventanaTitle,JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if((rojo < 0 && rojo > 255) || (verde < 0 && verde > 255) || (azul < 0 && azul > 255)){
-            JOptionPane.showMessageDialog(this, "Los campos rojo, verde, azul deben estar dentro de los valores 0 a 255", ventanaTitle,JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        ColorM color = new ColorM(
+        ClaseCigarro claCig = new ClaseCigarro(
                 codigo+"",
                 this.txtNombre.getText(),
-                rojo,
-                verde,
-                azul,
+                this.txtDescripcion.getText(),
                 1
         );
-        ControllerResponse resp = coloresController.adiccionar(color);
+        ControllerResponse resp = claCigController.adiccionar(claCig);
         if(resp.isOk()){
             JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
             cargarTabla();
@@ -673,33 +610,17 @@ public class MColoresView extends javax.swing.JFrame {
     
     private void modificarRegistro(){
         String ventanaTitle = "Información de la modificacion";
-        if(txtNombre.getText().isBlank()
-                || txtRojo.getText().isBlank() || txtVerde.getText().isBlank() || txtAzul.getText().isBlank()){
-            JOptionPane.showMessageDialog(this, "Debe completar todos los campos", ventanaTitle, JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        int rojo,verde,azul;
-        try{
-            rojo = Integer.parseInt(this.txtRojo.getText());
-            verde = Integer.parseInt(this.txtVerde.getText());
-            azul = Integer.parseInt(this.txtAzul.getText());
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Los campos rojo, verde y azul deben ser un numero entero", ventanaTitle,JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if((rojo < 0 && rojo > 255) || (verde < 0 && verde > 255) || (azul < 0 && azul > 255)){
-            JOptionPane.showMessageDialog(this, "Los campos rojo, verde, azul deben estar dentro de los valores 0 a 255", ventanaTitle,JOptionPane.ERROR_MESSAGE);
+        if(this.txtNombre.getText().isBlank() || this.txtDescripcion.getText().isBlank()){
+            JOptionPane.showMessageDialog(this, "El valor del nombre y la descripcion no puede ser vacio", ventanaTitle, JOptionPane.ERROR_MESSAGE);
             return;
         }
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente deseas realizar los cambios?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ColorM color = coloresController.search(this.txtCodigo.getText());
-            if(color != null){
-                color.setNombre(this.txtNombre.getText());
-                color.setRojo(rojo);
-                color.setVerde(verde);
-                color.setAzul(azul);
-                ControllerResponse resp = coloresController.modificar(color);
+            ClaseCigarro claCig = claCigController.search(this.txtCodigo.getText());
+            if(claCig != null){
+                claCig.setNombre(this.txtNombre.getText());
+                claCig.setDescripcion(this.txtDescripcion.getText());
+                ControllerResponse resp = claCigController.modificar(claCig);
                 if(resp.isOk()){
                     JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                     cargarTabla();
@@ -719,7 +640,7 @@ public class MColoresView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la eliminación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea eliminar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = coloresController.eliminar(this.txtCodigo.getText());
+            ControllerResponse resp = claCigController.eliminar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -736,7 +657,7 @@ public class MColoresView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la inactivación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea inactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = coloresController.inactivar(this.txtCodigo.getText());
+            ControllerResponse resp = claCigController.inactivar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -753,7 +674,7 @@ public class MColoresView extends javax.swing.JFrame {
         String ventanaTitle = "Información de la reactivación";
         int opc = JOptionPane.showConfirmDialog(this, "¿Realmente desea reactivar el registro?", ventanaTitle, JOptionPane.YES_NO_OPTION);
         if(opc == JOptionPane.YES_OPTION){
-            ControllerResponse resp = coloresController.reactivar(this.txtCodigo.getText());
+            ControllerResponse resp = claCigController.reactivar(this.txtCodigo.getText());
             if(resp.isOk()){
                 JOptionPane.showMessageDialog(this, resp.getMessage(), ventanaTitle, JOptionPane.INFORMATION_MESSAGE);
                 cargarTabla();
@@ -783,13 +704,13 @@ public class MColoresView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MClaseCigarroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MClaseCigarroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MClaseCigarroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MColoresView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MClaseCigarroView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -799,7 +720,7 @@ public class MColoresView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MColoresView().setVisible(true);
+                new MClaseCigarroView().setVisible(true);
             }
         });
     }
@@ -819,9 +740,7 @@ public class MColoresView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -830,11 +749,9 @@ public class MColoresView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JTable tblData;
-    private javax.swing.JTextField txtAzul;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtEstReg;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtRojo;
-    private javax.swing.JTextField txtVerde;
     // End of variables declaration//GEN-END:variables
 }
