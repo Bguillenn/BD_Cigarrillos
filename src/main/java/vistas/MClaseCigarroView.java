@@ -496,7 +496,7 @@ public class MClaseCigarroView extends javax.swing.JFrame {
         EstadoRegistro estReg = estRegController.search(2);
         this.txtCodigo.setText(claCig.getCodigo()+"");
         this.txtNombre.setText(claCig.getNombre());
-        this.txtDescripcion.setText(ClaCig.getDescripcion());
+        this.txtDescripcion.setText(claCig.getDescripcion());
         this.txtEstReg.setText(estReg.getDescripcion());
         this.txtCodigo.setEnabled(false);
         this.txtNombre.setEnabled(false);
