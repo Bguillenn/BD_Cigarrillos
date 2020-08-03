@@ -16,6 +16,7 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,6 +33,12 @@ public class MainView extends javax.swing.JFrame {
         btnDepartamentos = new javax.swing.JButton();
         btnColores = new javax.swing.JButton();
         btnClaseCigarro = new javax.swing.JButton();
+        btnProvincias = new javax.swing.JButton();
+        btnDistritos = new javax.swing.JButton();
+        btnDistritos1 = new javax.swing.JButton();
+        btnEstancos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnFabricantes1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,28 +77,83 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        btnProvincias.setText("Provincias");
+        btnProvincias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProvinciasActionPerformed(evt);
+            }
+        });
+
+        btnDistritos.setText("Distritos");
+        btnDistritos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDistritosActionPerformed(evt);
+            }
+        });
+
+        btnDistritos1.setText("Cigarrillos");
+        btnDistritos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDistritos1ActionPerformed(evt);
+            }
+        });
+
+        btnEstancos.setText("Estancos");
+        btnEstancos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstancosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel1.setText("MAESTROS HUB");
+
+        btnFabricantes1.setText("Fabricantes");
+        btnFabricantes1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFabricantes1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNaciones)
-                    .addComponent(btnColores))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEstReg)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDepartamentos))
-                    .addComponent(btnClaseCigarro))
-                .addContainerGap(184, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEstancos)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnNaciones)
+                                    .addComponent(btnColores)
+                                    .addComponent(btnDistritos))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnEstReg)
+                                    .addComponent(btnClaseCigarro)
+                                    .addComponent(btnDistritos1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnDepartamentos)
+                                    .addComponent(btnProvincias))))
+                        .addGap(0, 24, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(265, Short.MAX_VALUE)
+                    .addComponent(btnFabricantes1)
+                    .addGap(42, 42, 42)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNaciones)
                     .addComponent(btnEstReg)
@@ -99,8 +161,20 @@ public class MainView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnColores)
-                    .addComponent(btnClaseCigarro))
-                .addContainerGap(86, Short.MAX_VALUE))
+                    .addComponent(btnClaseCigarro)
+                    .addComponent(btnProvincias))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDistritos)
+                    .addComponent(btnDistritos1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEstancos)
+                .addContainerGap(119, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(194, Short.MAX_VALUE)
+                    .addComponent(btnFabricantes1)
+                    .addGap(143, 143, 143)))
         );
 
         pack();
@@ -125,6 +199,26 @@ public class MainView extends javax.swing.JFrame {
     private void btnClaseCigarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClaseCigarroActionPerformed
         new MClaseCigarroView().setVisible(true);
     }//GEN-LAST:event_btnClaseCigarroActionPerformed
+
+    private void btnProvinciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProvinciasActionPerformed
+        new MProvinciasView().setVisible(true);
+    }//GEN-LAST:event_btnProvinciasActionPerformed
+
+    private void btnDistritosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDistritosActionPerformed
+        new MDistritosView().setVisible(true);
+    }//GEN-LAST:event_btnDistritosActionPerformed
+
+    private void btnDistritos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDistritos1ActionPerformed
+        new MCigarrillosView().setVisible(true);
+    }//GEN-LAST:event_btnDistritos1ActionPerformed
+
+    private void btnEstancosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstancosActionPerformed
+        new MEstancosView().setVisible(true);
+    }//GEN-LAST:event_btnEstancosActionPerformed
+
+    private void btnFabricantes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFabricantes1ActionPerformed
+        new MFabricantesView().setVisible(true);
+    }//GEN-LAST:event_btnFabricantes1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,7 +259,13 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton btnClaseCigarro;
     private javax.swing.JButton btnColores;
     private javax.swing.JButton btnDepartamentos;
+    private javax.swing.JButton btnDistritos;
+    private javax.swing.JButton btnDistritos1;
     private javax.swing.JButton btnEstReg;
+    private javax.swing.JButton btnEstancos;
+    private javax.swing.JButton btnFabricantes1;
     private javax.swing.JButton btnNaciones;
+    private javax.swing.JButton btnProvincias;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
